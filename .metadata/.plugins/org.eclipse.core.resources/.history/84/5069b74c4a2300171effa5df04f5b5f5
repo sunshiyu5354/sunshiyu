@@ -1,0 +1,12 @@
+package com.cyl;
+
+import java.util.Scanner;
+public class Caiquan {
+	public static void main(String args[]){
+		menu();
+	}
+	public void menu(){
+		System.out.println("请输入你要出的数 (1.剪子 2.包袱 3.锤)");
+		Scanner sc = new Scanner(System.in);
+	}
+}

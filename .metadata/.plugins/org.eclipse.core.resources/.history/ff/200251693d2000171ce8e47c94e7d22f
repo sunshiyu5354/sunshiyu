@@ -1,0 +1,7 @@
+package com.zuche;
+
+public class Aodi extends zuche{
+	public void list(){
+	System.out.println(" 1    °ÂµÏA4   4       	   	500");
+	}
+}

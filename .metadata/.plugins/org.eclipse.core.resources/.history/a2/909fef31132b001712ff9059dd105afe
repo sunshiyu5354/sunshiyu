@@ -1,0 +1,10 @@
+package com.Thread;
+
+public class QuqianThread implements Runnable{
+	private Quqian qq;
+	public QuqianThread(Quqian qq){
+		this.qq = qq;
+	}
+	public void run(){
+	}
+}

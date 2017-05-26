@@ -1,0 +1,30 @@
+package com.sqldemo;
+
+import java.sql.*;
+
+public class Demo {
+	public static void main(String args[]) {
+		// 声明Connection对象
+		Connection con = Mysqlutil.getInstace();
+		try {
+			con.setAutoCommit(false);// 开启事务 以下执行的语句都看做整体 原子性
+			// 2.创建statement对象，用来执行SQL语句
+			String sql = "update emp2 set name = 'aaa' where id = 123";
+			PreparedStatement ps  = con.prepareStatement(sql);
+			ps.executeUpdate(sql);
+
+			String sql1 = "insert into emp2 values(123,'ss')";
+			PreparedStatement ps1  = con.prepareStatement(sql);
+			ps1.execute(sql);
+			con.commit(); 
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+
+	}
+}

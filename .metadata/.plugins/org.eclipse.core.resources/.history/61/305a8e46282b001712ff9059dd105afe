@@ -1,0 +1,6 @@
+package com.Thread;
+
+public class Cousrtem implements Runnable{
+	public void run() {	
+	}
+}

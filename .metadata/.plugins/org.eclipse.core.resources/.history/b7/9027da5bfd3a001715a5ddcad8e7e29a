@@ -1,0 +1,27 @@
+package com.sqldemo;
+
+import java.sql.*;
+import java.util.*;
+
+public class Mysqlutil {
+	//private static Connection con = null;
+	private static List<Connection> con = new ArrayList<Connection>();
+	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			// 1.getConnection()方法，连接MySQL数据库
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?user=root&password=ssy535499604");
+			if (!con.isClosed()) {
+				System.out.println("Succeeded connecting to the emp2");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private Mysqlutil(){
+		
+	}
+	public static Connection getInstace(){
+		return con;
+	}
+}

@@ -1,0 +1,36 @@
+package com.sqldemo;
+
+import java.sql.*;
+
+public class Demo {
+	public static void main(String args[]) {
+		// 声明Connection对象
+		Connection con = Mysqlutil.getInstace();
+		Connection con2 = Mysqlutil.getInstace();
+		//Connection con2 = null;
+		try {
+			//con.setAutoCommit(false);// 开启事务 以下执行的语句都看做整体 原子性
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				// 1.getConnection()方法，连接MySQL数据库
+				con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?user=root&password=ssy535499604");
+				if (!con.isClosed()) {
+					System.out.println("Succeeded connecting to the emp2");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			new Thread(new TestShiwu1(con)).start();
+			new Thread(new TestShiwu2(con2)).start();
+			//con.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			//try {
+				//con.rollback();
+			//} catch (Exception e1) {
+				//e1.printStackTrace();
+			//}
+		}
+
+	}
+}

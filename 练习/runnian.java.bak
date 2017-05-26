@@ -1,0 +1,17 @@
+public class runnian{
+public static void main(String ages[]){
+		int x,n;
+	printf("请输入一个年份:\n");
+	scanf("%d",&x);
+	if(x%4==0 && x%100!=0 || x%400==0) {
+		n=1;
+	} else
+		n=0;
+	if(n) {
+		System.out.print(x+"是闰年");
+	} else {
+		System.out.print(x+"不是闰年\n");
+		System.out.print("请重新输入\n");
+	}
+}
+}

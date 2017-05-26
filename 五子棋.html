@@ -1,0 +1,218 @@
+<html>
+<head>
+<title>Wuziqi</title>
+</head>
+<body>
+package com.Huitu;
+
+import java.awt.*; 
+import java.awt.event.MouseListener; 
+import java.awt.event.MouseEvent; 
+import java.util.Vector;  
+import javax.swing.*;  
+public  class Wuziqi extends JFrame implements MouseListener{  
+	public static void main(String args[]){   
+		new Wuziqi(); 
+    }   
+	Vector v=new Vector();  
+	Vector white=new Vector();   
+	Vector black=new Vector();   
+	JButton btnstart =new JButton("开始");  
+	JButton btnstop =new JButton("停止");  
+	JToolBar tool=new JToolBar();    
+	boolean b; //用来判断 白棋还是黑棋      
+	int blackcount,whitecount; //计算悔棋    
+ /** 构造方法     */
+	public Wuziqi(){   
+		super("五子棋");   
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭按钮  
+		Container con=this.getContentPane();   
+		this.addMouseListener(this);//添加监听   
+		tool.add(btnstart);//添加按钮   
+		tool.add(btnstop);    
+		this.setSize(550,500);//设置窗体大小     
+		this.setVisible(true);   
+	}      
+	int w=20;  //间距大小 是双数     
+	int px=100,py=100; //棋盘的坐标     
+	int pxw=(px+w), pyw=(py+w);     
+	int width=w*16,height=w*16;      
+	int vline=(width+px); //垂直线的长度     
+	int hline=(height+py); //水平线的长度     
+	/**       * 画棋盘       */  
+	public void paint(Graphics g){   
+		g.clearRect(0, 0, this.getWidth(), this.getHeight()); //清除面板 
+		g.setColor(Color.BLACK); //设置网格颜色   
+		g.drawRect(px, py, width, height); //网格大小   
+		g.drawString("简易五子棋", 110, 70);   
+		for(int i=0;i<15;i++){    
+			g.drawLine(pxw+i*w,py,pxw+i*w,hline);//每条横线和竖线    
+			g.drawLine(px,pyw+i*w,vline,pyw+i*w);    
+		}    
+		for(int x=0;x<v.size();x++){    
+			String str=(String)v.get(x);   
+			String tmp[]=str.split("-");    
+			int a=Integer.parseInt(tmp[0]);    
+			int b=Integer.parseInt(tmp[1]);    
+			a=a*w+px;    
+			b=b*w+py;     
+			if(x%2==0){     
+				g.setColor(Color.WHITE);    
+			}else{     
+				g.setColor(Color.BLACK);    
+			}     
+				g.fillArc(a-w/2, b-w/2, w, w,0,360);   
+		}   
+	}   
+	public void updeta(Graphics g){   
+		this.paint(g);    
+	}   
+	public void victory(int x,int y,Vector contain){  //判断胜利的方法   
+		int cv=0; //计算垂直的变量   
+		int ch=0; //计算水平的变量   
+		int ci1=0; //计算斜面的变量1   
+		int ci2=0; //计算斜面的变量2   
+		for(int i=1;i<5;i++){    
+			if(contain.contains((x+i)+"-"+y))     
+				ch++;    
+			else      
+				break;    
+		}    
+		System.out.println("前面执行了"+ch+"次");   
+		for(int i=1;i<5;i++){    
+			if(contain.contains((x-i)+"-"+y))      
+				ch++;    
+			else     
+				break;      
+} 
+		System.out.println("后面执行了"+ch+"次");   
+		for(int i=1;i<5;i++){    
+	    	 if(contain.contains(x+"-"+(y+i)))     
+	    		 cv++;    
+	    	 else      
+	    		 break;    
+	    	  }    
+	    for(int i=1;i<5;i++){    
+	    	 if(contain.contains(x+"-"+(y-i)))      
+	    		 cv++;    
+	    	 else      
+	    		 break;   
+	    	 }    
+	     for(int i=1;i<5;i++){    
+	    	 if(contain.contains((x+i)+"-"+(y+i)))     
+	    		 ci1++;    
+	    	 else     
+	    		 break;    
+	    	 }   
+	     for(int i=1;i<5;i++){     
+	    	 if(contain.contains((x-i)+"-"+(y-i)))     
+	    		 ci1++;    
+	    	 else     
+	    		 break;    }    
+	     for(int i=1;i<5;i++){    
+	    	 if(contain.contains((x-i)+"-"+(y+i)))     
+	    		 ci2++;    
+	    	 else     
+	    		 break;    
+	    	 }    
+	     for(int i=1;i<5;i++){    
+	    	 if(contain.contains((x+i)+"-"+(y-i)))     
+	    		 ci2++;    
+	    	 else     
+	    		 break;    
+	    	 }    
+	      if(ch>=4||cv>=4||ci1>=4||ci2>=4){     
+	    	  System.out.println(v.size()+"步棋");     
+	    	  if(v.size()%2==0){ //判断偶数是黑棋胜利，奇数白棋胜利      
+	    		  JOptionPane.showMessageDialog(null,"恭喜你 黑棋赢了");     
+	    		  }else{          
+	    			  JOptionPane.showMessageDialog(null,"恭喜你 白棋赢了");
+	    		  }      
+	    	  this.v.clear();     
+	    	  this.black.clear();     
+	    	  this.white.clear();     
+	    	  this.repaint();      
+	      }     
+	      System.out.println(ch+" "+cv+" "+ci1+" "+ci2);   
+	}   
+	public void mouseClicked(MouseEvent e) {   
+		if(e.getButton()==e.BUTTON1){    
+			int x=e.getX();    
+	    	int y=e.getY();     
+	    	x=(x-x%w)+(x%w>w/2?w:0);    
+	    	y=(y-y%w)+(y%w>w/2?w:0);    
+	    	x=(x-px)/w;    
+	    	y=(y-py)/w;     
+	    	if(x>=0&&y>=0&&x<=16&&y<=16){     
+	    		if(v.contains(x+"-"+y)){      
+	    			System.out.println("已有棋了");    
+	    		}else{       
+	    			v.add(x+"-"+y);      
+	    			this.repaint();       
+	    			if(v.size()%2==0){       
+	    				black.add(x+"-"+y);       
+	    				this.victory(x, y,black);        
+		    				System.out.println("黑棋");             
+	    			}else{      
+	    				white.add(x+"-"+y);       
+	    				this.victory(x, y,white);       
+	    				System.out.println("白棋");       
+	    			}       
+	    			System.out.println(e.getX()+"-"+e.getY());     
+	    		}       
+	    	}else{     
+	    		System.out.println(e.getX()+"-"+e.getY()+"|"+ x+"-"+y+"\t超出边界");     
+	    	}    
+		}
+		if(e.getButton()==e.BUTTON3){ //悔棋方法全在这里    
+			System.out.println("鼠标右键-悔棋");
+			if(v.isEmpty()){ 
+				JOptionPane.showMessageDialog(this,"没有棋可以悔");    
+			}else{    
+				if(v.size()%2==0){ //判断是白方悔棋 还是黑方悔棋      
+					blackcount++;       
+					if(blackcount>3){       
+						JOptionPane.showMessageDialog(this, "黑棋已经悔了三步");      
+					}else{       
+						v.remove(v.lastElement());       
+						this.repaint();       
+					}             
+				}else{     
+					whitecount++;      
+					if(whitecount>3){       
+						JOptionPane.showMessageDialog(this, "白棋已经悔了三步");      
+					}else{       
+						v.remove(v.lastElement());       
+						this.repaint(); 
+				}
+			}                
+		}
+	}
+}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}	
+}
+
+
+
+
+</body>
+</html>

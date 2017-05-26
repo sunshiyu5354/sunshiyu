@@ -1,0 +1,19 @@
+package com.zuche;
+import java.util.Scanner;
+public class zucheDemo {
+	static Scanner sc = new Scanner(System.in);
+	static zuche[] z = new zuche[100];
+	public static void main(String args[]){
+		menu();
+	}
+	public static void menu(){
+		System.out.println("*****欢迎使用租车系统！*****");
+		System.out.println("*****你确定租车吗？*****");
+		System.out.println("1.是(请输入1) 2.否(请输入2)");
+		int f = sc.nextInt();
+		if(f == 2){
+			System.out.println("*****我就不租车*****");
+			menu();
+		}
+	}
+}

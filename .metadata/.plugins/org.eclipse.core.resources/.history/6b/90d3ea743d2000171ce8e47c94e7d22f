@@ -1,0 +1,7 @@
+package com.zuche;
+
+public class Ywk extends zuche{
+	public void list(){
+		System.out.println("6. 6    ÒÀÎ¬¿Â           	   	20	1000");
+	}
+}

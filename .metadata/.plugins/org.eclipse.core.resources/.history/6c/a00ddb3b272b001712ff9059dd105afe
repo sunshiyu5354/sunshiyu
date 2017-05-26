@@ -1,0 +1,33 @@
+package com.Thread;
+
+public class Storage {
+	private final static int MAX_SIZE = 100;
+	private int size = 100;
+	public Storage(int size){
+		this.size = size;
+	}
+	
+	//存货
+	public synchronized void push(int number){
+		if(getSize()+number<=MAX_SIZE){
+			setSize(getSize()+number);
+		}else{
+			try{
+				this.wait();//让想获取该对象锁的线程处于等待状态
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		setSize(getSize()+number);
+	}
+	
+	
+	//取货
+	public synchronized void pop(int number){ 
+	public int getSize(){
+		return size;
+	}
+	public void setSize(int size){
+		this.size = size;
+	}
+}

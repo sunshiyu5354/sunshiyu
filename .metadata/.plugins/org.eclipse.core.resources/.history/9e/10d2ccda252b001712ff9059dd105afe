@@ -1,0 +1,20 @@
+package com.Thread;
+
+public class Storage {
+	private int size = 100;
+	public Storage(int size){
+		this.size = size;
+	}
+	
+	//´æ»õ
+	public void push(int number){
+		if(getSize()+number<=getSize())
+		setSize(getSize()+number);
+	}
+	public int getSize(){
+		return size;
+	}
+	public void setSize(){
+		this.size = size;
+	}
+}

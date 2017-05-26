@@ -1,0 +1,5 @@
+package com.zuche;
+import java.util.Scanner;
+public class zucheDemo {
+	static Scanner sc = new Scanner(System.in);
+}

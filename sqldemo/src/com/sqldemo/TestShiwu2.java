@@ -1,0 +1,34 @@
+package com.sqldemo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class TestShiwu2 implements Runnable {
+	Connection con;
+
+	public TestShiwu2(Connection con) {
+		this.con = con;
+	}
+
+	public void run() {
+		String sql1 = "delete from emp2 where id = 128";
+		//String sql1 = "insert into emp2 values(128,'qwe')";
+		PreparedStatement ps1 = null;
+		try {
+			con.setAutoCommit(false);
+			ps1 = con.prepareStatement(sql1);
+			ps1.execute();
+			con.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+}

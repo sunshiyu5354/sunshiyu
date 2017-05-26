@@ -1,0 +1,34 @@
+package com.cyl;
+
+public class BigDecimalMain{
+	public static void main(String[] args) {
+		show1();
+		System.out.println("----------------");
+		show2();
+		System.out.println("----------------");
+		show3();
+	}
+	public static void show1(){
+		System.out.println("和="+(0.01 + 0.01));
+		System.out.println("差="+(0.01 - 0.1));
+		System.out.println("积="+(0.01 * 0.01));
+		System.out.println("商="+(0.01 / 0.01));
+	}
+	public static void show2(){
+		BigDecimal bd = new BigDecimal(0.01);
+		BigDecimal bd2 = new BigDecimal(0.01);
+		System.out.println("和="+bd.add(bd2));
+		System.out.println("差="+bd.subtract(bd2));
+		System.out.println("积="+bd.multiply(bd2));
+		System.out.println("商="+bd.divide(bd2));
+	}
+	public static void show3(){
+		BigDecimal bd = new BigDecimal("0.01");
+		BigDecimal bd2 = new BigDecimal("0.01");
+		System.out.println("和="+bd.add(bd2));
+		System.out.println("差="+bd.subtract(bd2));
+		System.out.println("积="+bd.multiply(bd2));
+		System.out.println("商="+bd.divide(bd2));
+	}
+}
+

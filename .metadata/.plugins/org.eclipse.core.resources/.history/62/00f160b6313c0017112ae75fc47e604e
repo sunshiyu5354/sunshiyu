@@ -1,0 +1,31 @@
+package com.Fanshe;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Properties;
+
+//非反射方法
+public class Test {
+	public static void main(String args[]) throws Exception{
+		//new Service1().doService1();
+		//new Service2().doService2();
+		File f = new File("E:\\lyfssy\\sqldemo\\src\\spring.txt");
+		Properties s =  new Properties();
+		s.load(new FileInputStream(f));
+		String className = (String) s.get("class");
+		String methodName = (String) s.get("method");
+		
+		//根据类名称创建类对象
+		Class cl = Class.forName(className);
+		//根据方面名称，获取方法
+		Method m = cl.getMethod(methodName);
+		//获取构造器
+		Constructor c = cl.getConstructor();
+		//根据构造器实例化出对象
+		Object service = c.newInstance();
+		//调用对象的指定方法
+		m.invoke(service);
+	}
+}

@@ -1,0 +1,8 @@
+package com.Thread;
+
+public class QuqianMain {
+	public static void main(String args[]){
+		Quqian ka = new Quqian("",2000);
+		Quqian cz = new Quqian("",3000);
+	}
+}

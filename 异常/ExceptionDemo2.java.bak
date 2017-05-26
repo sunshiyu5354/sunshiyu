@@ -1,0 +1,18 @@
+public class ExceptionDemo2{
+	public static void main(String agse[]){
+		try{
+			add();
+		}catch(ArithmeticException a){
+			//System.out.println(a.getMessage());
+			//System.out.println(a.toString());
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	public static void add()throws ArithmeticException,Exception{
+		int num1 = 1;
+		int num2 = 0;
+		int num3 = num1/num2;
+		System.out.println(num3);
+	}
+}

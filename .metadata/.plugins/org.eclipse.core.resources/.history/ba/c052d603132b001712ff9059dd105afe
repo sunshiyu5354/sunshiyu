@@ -1,0 +1,11 @@
+package com.Thread;
+
+public class QuqianThread extends Thread{
+	Quqian qq;
+	public QuqianThread(Quqian qq){
+		this.qq = qq;
+	}
+	public void run(){
+		qq.sale();
+	}
+}

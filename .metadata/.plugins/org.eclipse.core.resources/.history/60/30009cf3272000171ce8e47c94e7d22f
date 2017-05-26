@@ -1,0 +1,19 @@
+package com.zuche;
+
+public class zuche {
+	int id;
+	String name;
+	int busload;
+	int boatload;
+	int rent;
+	public zuche(int id,String name,int busload,int boatload,int rent){
+		this.id = id;
+		this.name = name;
+		this.busload = busload;
+		this.boatload = boatload;
+		this.rent = rent;	
+	}
+	public void say(){
+		System.out.println(id		+""+name		+""+busload		+""+boatload		+""+rent);	
+	}
+}

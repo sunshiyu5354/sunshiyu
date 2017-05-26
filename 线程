@@ -1,0 +1,157 @@
+进程是什么？进程是程序执行的一个实例，比如说，10个用户同时执行IE，那么就有10个独立的进程(尽管他们共享同一个可执行代码)。
+进程不是什么？一个没有运行的程序不是一个进程。
+    进程的特点：每一个进程都有自己的独立的一块内存空间、一组资源系统。其内部数据和状态都是完全独立的。
+    怎么看待进程？进程的优点是提高CPU运行效率，在同一时间内执行多个程序，即并发执行。但是从严格上讲,也不是绝对的同一时刻执行多个程序，只不过CPU在执行时通过时间片等调度算法不同进程高速切换。进程类似于人类，是被产生的，有或长或短的有效生命，可以产生一个或多个子进程，最终都要消亡的。每个子进程都只有一个父进程。在这里顺带提下，Linux里通过调用fork()函数产生子进程。子进程在创建时，它几乎和父进程相同。它是从父进程的地址空间copy过来的。尽管它们可以共享有程序代码的页，但是它们各自有独立的数据空间。对子进程内存的修改不会影响父进程，反之亦然。
+           什么是守护进程？在系统的引导的时候会开启很多服务，这些服务就叫做守护进程，也叫后台服务程序，它的生命周期较长，在系统关闭时终止。这个在linux中经常提到init进程，超级守护进程。
+ 
+       线程的概念：一个线程是进程的一个顺序执行流。      
+       同类的多个线程共享一块内存空间和一组系统资源，线程本身的数据通常只有CPU的寄存器数据，以及一个供程序执行时的堆栈。线程在切换时负荷小，因此，线程也被称为轻负荷进程。一个进程中可以包含多个线程。
+            由于在Java中经常会和线程打交道，所以下面讨论线程的实现方法。
+     Java类支持多线程，通过java.lang.Thread类来实现，Thread类中的相关函数可以启动线程、终止线程、线程挂起等。
+      Thread类一些构造函数：
+       public Thread ();
+　    public Thread (Runnable target);
+       public  Thread (Runnbale target,String name);
+       public Thread (String name);
+　　public Thread (ThreadGroup group，Runnable target);
+　　public Thread (ThreadGroup group，String name);
+       public Thread (ThreadGroup group，Runnable target，String name);
+ 
+      另外，当一个类声明实现Runnable接口可以充当线程体，在Runnable接口接口中只定义一个方法:
+       public void run();
+       任何实现接口Runnable的对象都可以作为一个线程的目标对象，而类Thread本身也实现了接口Runnable，因此我们可以用两种方法实现线程体。
+       1.定义一个线程类，它继承类Thread并复写run()方法。由于Java只支持单一继承，这种方法定义的类不能再继承其它的类了。
+       2.提供一个实现Runnable接口的类作为一个线程的目标对象，在初始化一个Thread类或Thread子类的线程对象时，把目标对象传给这个线程实例，复写目标对象从Runnable得到的run()方法。这种方法定义的类仍然可以继承其它的类。
+ 
+        线程的状态
+         1.创建状态
+          用下面的语句：
+         Thread thread = new Thread();//加载类的构造函数，来生成对象
+        当一个线程处于创建状态时，它仅仅是一个空的线程对象，系统不为它分配资源。
+         2.运行状态
+         调用start()方法，thread.start();
+         当一个线程处于可运行状态时，系统为这个线程分配了它需的系统资源，安排其运行并调用线程运行方法，这样就使得该线程处于可运行( Runnable )状态。
+        3.不可运行状态
+         一般由下列几种导致不可运行状态：
+        1).调用sleep()方法，thread.sleep();//延时用
+        2).调用suspend()方法，thread.suspend();
+        3).程序上的等待，线程调用了wait()方法，thread.wait()；
+        4).发生线程阻塞，出现等待状态。
+ 
+        4.消亡状态
+         一般两种方法：
+        1).线程执行完毕，自然销毁
+        2).调用stop()方法，thread.stop();
+ 
+       下面通过两个例子来实现上述两种方法:
+        1.定义一个类，继承Thread类 
+public class SimpleThread extends Thread{
+ public SimpleThread(String str){
+  super(str);
+ }
+
+ public void run(){//复写父类的run()方法
+  for(int i = 0; i < 20 ;i++){
+   System.out.println(i + " " + getName());
+   try{
+    sleep((int)(Math.random() * 1000));//线程休眠，把控制权交出去
+   }
+   catch(InterruptedException e) {}
+  }
+  System.out.println("DONE! " + getName());
+ }
+ public static void main(String args[]){
+  new SimpleThread("First").start();
+  new SimpleThread("Second").start();
+ }
+}
+执行结果：
+0 First
+0 Second
+1 Second
+2 Second
+3 Second
+1 First
+2 First
+4 Second
+3 First
+5 Second
+6 Second
+4 First
+7 Second
+5 First
+8 Second
+6 First
+9 Second
+7 First
+10 Second
+11 Second
+8 First
+9 First
+10 First
+12 Second
+13 Second
+11 First
+12 First
+14 Second
+13 First
+15 Second
+14 First
+15 First
+16 Second
+16 First
+17 First
+18 First
+17 Second
+18 Second
+19 First
+19 Second
+DONE! First
+DONE! Second
+    两个线程交替运行，如果没有sleep()方法，更明显的是这两个线程几乎同时运行，前面讲过，是CPU切换很快。
+ 
+ 2.定义一个类，通过实现Runnable接口
+public class runnableThread implements Runnable{
+    Thread runnableTh;
+ public runnableThread(){
+  runnableTh = new Thread(this, "Thread");
+  runnableTh.start();
+ }
+ public void run(){//复写Runnable接口的run()方法
+  for(int i = 0; i < 20 ;i++){
+   System.out.println(i + " " + runnableTh.getName());
+  
+   try{
+    runnableTh.sleep((int)(Math.random() * 1000));//线程休眠，把控制权交出去 数据由随机函数产生
+   }
+   catch(InterruptedException e) {}
+  }
+  System.out.println("DONE! " + runnableTh.getName());
+ }
+ public static void main(String args[]){
+  new runnableThread();//加载匿名类的构造函数
+ }
+}
+
+执行结果:
+0 Thread
+1 Thread
+2 Thread
+3 Thread
+4 Thread
+5 Thread
+6 Thread
+7 Thread
+8 Thread
+9 Thread
+10 Thread
+11 Thread
+12 Thread
+13 Thread
+14 Thread
+15 Thread
+16 Thread
+17 Thread
+18 Thread
+19 Thread
+DONE! Thread

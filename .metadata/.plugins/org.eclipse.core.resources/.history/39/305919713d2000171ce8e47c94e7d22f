@@ -1,0 +1,7 @@
+package com.zuche;
+
+public class Jl extends zuche{
+	public void list(){
+		System.out.println("4. 4    ½ğÁú               20       	   	800");
+	}
+}

@@ -1,0 +1,14 @@
+package com.cyl;
+
+public class Zhzfc {
+	public static void main(String args[]){
+		String str = "ABCD";
+		byte[] bys = str.getBytes();
+		StringBuilder sBuilder = new StringBuilder("");
+		for(int i=0;i<bys.length;i++){
+			sBuilder.append((char)i).append(",");
+		}
+		sBuilder.deleteCharAt(sBuilder.length()-1);
+		System.out.println(sBuilder.toString());
+	}
+}

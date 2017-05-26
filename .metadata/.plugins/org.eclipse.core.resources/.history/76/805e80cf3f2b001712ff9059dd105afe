@@ -1,0 +1,7 @@
+package com.Thread;
+
+public class StorageMain {
+	public static void main(String args[]){
+		
+	}
+}

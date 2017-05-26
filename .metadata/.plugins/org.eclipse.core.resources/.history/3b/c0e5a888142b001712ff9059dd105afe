@@ -1,0 +1,8 @@
+package com.Thread;
+
+public class QuqianMain {
+	public static void main(String args[]){
+		QuqianThread ka = new QuqianThread(qq);
+		QuqianThread cz = new QuqianThread(qq);
+	}
+}

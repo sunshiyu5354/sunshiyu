@@ -1,0 +1,17 @@
+package com.Thread;
+
+public class QuqianThread implements Runnable{
+	private Quqian qq;
+	private int money;
+	public QuqianThread(Quqian qq,int money){
+		this.qq = qq;
+		this.money = money;
+	}
+	public void run(){
+		if(qq.getNumber()>=money){//ÕË»§Óà¶î×ã¹»
+			qq.setNumber(qq.getNumber()-money);
+		}else{
+			System.out.println("Óà¶î²»×ã"+qq.getNumber());
+		}
+	}
+}

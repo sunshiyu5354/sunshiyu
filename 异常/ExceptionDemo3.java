@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class ExceptionDemo3{
+	public static void main(String args[]){
+		System.out.println("请输入五个整数");
+		ExceptionDemo3 t = new ExceptionDemo3();
+		try{
+			t.add();
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+	}
+	public void add() throws Exception{
+		try{
+			Scanner sc = new Scanner(System.in);
+			int i=0;
+			int t [] = new int[5];
+			for(i=0;i<=t.length;i++){
+			t[i] = sc.nextInt();
+			if(i<t.length){
+				System.out.println("请输入至少五个整数");
+				}
+			}
+			for(i=0;i<t.length;i++){
+				System.out.println(t[i]);
+			}
+			System.out.print("\n");
+		}catch(Exception e){
+			throw new Exception("请输入整数");
+		}
+	}
+}

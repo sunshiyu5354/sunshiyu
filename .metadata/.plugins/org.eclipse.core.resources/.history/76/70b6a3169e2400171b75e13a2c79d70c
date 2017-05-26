@@ -1,0 +1,55 @@
+/* 
+ Map集合：该集合存储键(K)值(V)对,一对一往里存，而且要保证键的唯一性。 
+    1、添加 
+        put(K key,V value) 
+        putAll(Map<? extends K,? extends V> m) 
+    2、删除 
+        clear() 
+        remove(Object key) 
+    3、判断 
+        containsValue(Object value) 
+        containsKey(Object key) 
+        isEmpty() 
+    4、获取 
+        get(Object key) 
+        siza() 
+        values() 
+*/
+package com.Map;
+
+import java.util.Collection;  
+import java.util.HashMap;  
+import java.util.Map;  
+public class MapDemo {  
+    public static void main(String[] args) {  
+        Map<String,Integer,String> map=new HashMap<Integer,String>();  
+          
+        //添加元素  
+        map.put(20134316, "尚振伟" ,55);  
+        map.put(20134314, "牛建伟");  
+        map.put(20134313, "刘中林");  
+        map.put(20134311, "刘     江");  
+        //在添加元素时，如果出现相同的键，那么后添加的值会覆盖原有键对应的值（value），  
+        //并且put方法会返回被覆盖的值。  
+        map.put(20134311, "傻老二");  
+        map.put(20134309, "李新鹏");  
+        map.put(20134318, "田成琳");  
+          
+        System.out.println(map);//获取map集合中所有的值    
+        Collection<String> coll=map.values();  
+        System.out.println("map集合中的value值为：");  
+        System.out.println(coll);  
+        int key=20134316;  
+        if(map.containsKey(key))  
+            System.out.println("存在："+map.get(key));  
+        System.out.println("containsKey:"+map.containsKey(20134316));  
+        map.put(20134311, "刘     江");  
+        System.out.println("添加新元素后，map集合为：");  
+        System.out.println(map);  
+        System.out.println("get:"+map.get(20134314));  
+        //可以通过get()方法的返回值来判断一个键是否存在，通过返回null来判断。  
+        System.out.println("get:"+map.get(20134319));  
+        System.out.println("remove:"+map.remove(20134311));  
+        System.out.println(map);  
+    }  
+}  

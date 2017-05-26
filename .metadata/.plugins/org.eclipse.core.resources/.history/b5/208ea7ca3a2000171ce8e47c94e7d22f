@@ -1,0 +1,7 @@
+package com.zuche;
+
+public class Mzd {
+	public void list(){
+		System.out.println("2    Âí×Ô´ï6   4       	   	400");
+	}
+}

@@ -1,0 +1,31 @@
+package com.sqldemo;
+
+import java.sql.*;
+
+public class Demo {
+	public static void main(String args[]) {
+		// 声明Connection对象
+		Connection con = Mysqlutil.getInstace();
+		try {
+			con.setAutoCommit(false);// 开启事务 以下执行的语句都看做整体 原子性
+			// 2.创建statement对象，用来执行SQL语句
+			// String sql = "select*from emp2";
+			String sql = "update emp2 set name = 'aa' where id = 123";
+			Statement st = con.createStatement();
+			// 3.ResultSet类，用来存放获取的结果集
+			//ResultSet rs = st.executeQuery(sql);
+			st.executeUpdate(sql);
+			/*int id;
+			String name;
+			while (rs.next()) {
+				id = rs.getInt("id");
+				name = rs.getString("name");
+				System.out.println(id + "\t" + name);
+			}
+			con.commit();*/
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}

@@ -1,0 +1,36 @@
+public class xiyouji{
+	public static void main(String args[]){
+		int a,b,c;
+		a=1;
+		c=0;
+		for(b=2;b<=100;b++){
+			c=a+b;
+			a=c;
+		}
+		System.out.println("100以内的正整数和是"+c);
+		int d,e,f;
+		d=1;
+		f=0;
+		for(e=2;e<=1000;e++){
+			f=d+e;
+			d=f;
+		}
+		System.out.println("1000以内的正整数和是"+f);
+		int x,y,z;
+		x=1;
+		z=0;
+		for(y=2;y<=10000;y++){
+			z=x+y;
+			x=z;
+		}
+		System.out.println("10000以内的正整数和是"+z);
+		int i,m,n;
+		i=1;
+		m=0;
+		for(n=2;n<=100000;n++){
+			m=i+n;
+			i=m;
+		}
+		System.out.println("10000以内的正整数和是"+);
+	}
+}

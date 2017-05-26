@@ -1,0 +1,28 @@
+package com.zuche;
+import java.util.Scanner;
+public class zucheDemo {
+	static Scanner sc = new Scanner(System.in);
+	public static void main(String args[]){
+		zuche Aodi = new Aodi();
+		menu();
+	}
+	public static void menu(){
+		System.out.println("*****欢迎使用租车系统！*****");
+		System.out.println("*****你确定租车吗？*****");
+		System.out.println("1.是(请输入1) 2.否(请输入2)");
+		int f = sc.nextInt();
+		if(f == 2){
+			System.out.println("*****我就不租车*****");
+			menu();
+		}
+		if(f == 1){
+			list();
+		}
+	}
+	public static void list(){
+		System.out.println("*****您可租车的类型及价目表*****");
+		System.out.println("序号   车名       载客数(人)   载货量(吨)  日租金(元/天)");
+		list.info
+		System.out.println("*****请输入您的租车数量:*****");
+	}
+}

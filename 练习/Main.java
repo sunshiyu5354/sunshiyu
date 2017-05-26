@@ -1,0 +1,88 @@
+public class Main{
+	public static void main(String[] args){
+		//学生类
+		System.out.println("学生有"+Student.numbers+"人");
+		Student student = new Student("齐天大圣",1000,'男');
+		student.say();
+		student.eat();
+		student.study();
+		student.play();
+		
+        System.out.print("\n");
+		//火车类
+		System.out.println("火车现在有"+Train.numbers+"辆");
+		Train[] train = new Train[3];
+		Train train1 = new Train("特快列车 ","天堂 ",1000,100000);
+		Train train2 = new Train("中性列车 ","人间 ",100,10000);
+		Train train3 = new Train("超音速列车 ","地狱 ",10000,1000000);
+		train[0] = train1;
+		train[1] = train2;
+		train[2] = train3;
+		for(int i = 0;i<train.length;i++){
+			train[i].say();
+		}
+		train1.run();
+        train1.draw();
+
+		System.out.print("\n");
+		//学校类
+		System.out.println("附近学校有"+School.numbers+"所");
+		School[] school = new School[3];
+		School school1 = new School("山东交通技师学院 ","交通商务系 ","软件开发部 ",16320);
+		School school2 = new School("山东交通技师学院 ","机械电子系 ","汽车维修 ",15320);
+		School school3 = new School("山东交通技师学院 ","汽车系 ","数控机床 ",14320);
+		school[0] = school1;
+		school[1] = school2;
+		school[2] = school3;
+		for(int i = 0;i<school.length;i++){
+			school[i].say();
+		}
+		school1.running();
+        school1.recess();
+		school1.opens();
+		System.out.print("\n");
+		//手机类
+		System.out.println("手机有"+Cellphone.nubmers+"种");
+		Cellphone c[] = new Cellphone[3];
+		Cellphone c1 = new Cellphone("华为荣耀畅玩5x ","黑色 ",5.7,16,1299);
+		Cellphone c2 = new Cellphone("小米5 ","白色 ",5.5,32,1399);
+		Cellphone c3 = new Cellphone("三星 ","粉色 ",6,64,1999);
+		c[0] = c1;
+		c[1] = c2;
+		c[2] = c3;
+		for(int i = 0;i<c.length;i++){
+			c[i].say();
+		}
+		System.out.print("\n");
+		//教师类
+		System.out.println("教师有"+Teacher.nubmers+"人");
+		Teacher t[] = new Teacher[3];
+		Teacher t1 = new Teacher("语文老师","语文",30,'男');
+		Teacher t2 = new Teacher("数学老师","数学",25,'女');
+		Teacher t3 = new Teacher("英语老师","英语",40,'男');
+		t[0] = t1;
+		t[1] = t2;
+		t[2] = t3;
+		for(int i=0; i<t.length;i++){
+			t[i].say();
+		}
+		System.out.print("\n");
+		//电脑类
+		System.out.println("电脑有"+Computer.nubmers+"种");
+		Computer d[] = new Computer[3];
+		Computer d1 = new Computer("华硕","黑色 ",15.7,4,4200);
+		Computer d2 = new Computer("戴尔","白色 ",15.7,4,5210);
+		Computer d3 = new Computer("雷神","灰色 ",15.7,8,6980);
+		d[0] = d1;
+		d[1] = d2;
+		d[2] = d3;
+		for(int i=0;i<d.length;i++){
+			d[i].say();
+		}
+		System.out.print("\n");
+		//王者类
+		//System.out.println("王者荣耀现在有"+King.nubmers+"个英雄");
+		//King k[] = new King[3];
+
+	}
+}

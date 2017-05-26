@@ -1,0 +1,9 @@
+import java.util.Scanner;
+public class Main{
+	static Scanner sc = new Scanner(System.in);
+	static Bank[] bb = new Bank[100];
+	static int i = 0;
+	public static void main(String[] ages){
+		menu();
+	}
+}

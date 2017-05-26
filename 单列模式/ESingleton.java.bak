@@ -1,0 +1,8 @@
+public class ESingleton{
+	public static ESingleton instance = new ESingleton();
+	private ESingleton(){
+	}
+	public static ESingleton getInstance(){
+		return instance;
+	}
+}

@@ -1,0 +1,8 @@
+package com.Fanshe;
+//非反射方法
+public class Test {
+	public static void main(String args[]){
+		new Service1().doService1();
+		new Service2().doService2();
+	}
+}

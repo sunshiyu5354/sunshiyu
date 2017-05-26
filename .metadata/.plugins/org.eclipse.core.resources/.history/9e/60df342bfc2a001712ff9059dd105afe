@@ -1,0 +1,7 @@
+package com.Thread;
+
+public class QuqianMain {
+	public static void main(String args[]){
+		
+	}
+}

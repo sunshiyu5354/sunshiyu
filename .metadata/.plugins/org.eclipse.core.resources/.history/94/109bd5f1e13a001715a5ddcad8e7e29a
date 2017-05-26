@@ -1,0 +1,24 @@
+package com.sqldemo;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class TestShiwu1 implements Runnable {
+	Connection con;
+
+	public TestShiwu1(Connection con) {
+		this.con = con;
+	}
+
+	public void run() {
+		String sql = "insert into emp2 values(123,'sqs')";
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
